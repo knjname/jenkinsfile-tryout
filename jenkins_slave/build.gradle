@@ -1,0 +1,30 @@
+def swarmClient = "https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.3/swarm-client-3.3.jar"
+def jenkinsUrl = "http://localhost:18880"
+def username = "admin"
+def password = "admin"
+
+def swarmJar = new File(buildDir, "swarm.jar")
+def swarmRoot = new File(buildDir, "swarm-root")
+
+task launchSlave {
+    doLast () {
+
+        buildDir.mkdir()
+        swarmRoot.mkdir()
+        if (! swarmJar.exists()) {
+            swarmJar.bytes = new URL(swarmClient).bytes
+        }
+
+        javaexec {
+            main = "-jar"
+            args = [
+                new File(buildDir, "swarm.jar").absolutePath,
+                "-master", jenkinsUrl,
+                "-fsroot", swarmRoot.absolutePath,
+                "-labels", "docker",
+                "-username", username,
+                "-password", password,
+            ]
+        }
+    }
+}

@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  jenkins:
+    image: jenkins:2.32.3
+    ports:
+      - 18880:8080
+      - 18881:18881
+    environment: 
+      - JENKINS_SLAVE_AGENT_PORT=18881
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+
+
