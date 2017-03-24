@@ -10,6 +10,7 @@ services:
     environment: 
       - JENKINS_SLAVE_AGENT_PORT=18881
     volumes:
+      - ./jenkins_tricks/disableSecurity.groovy:/usr/share/jenkins/ref/init.groovy.d/disableSecurity.groovy
       - ./jenkins_home:/var/jenkins_home
 
 

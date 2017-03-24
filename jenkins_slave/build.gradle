@@ -1,7 +1,7 @@
 def swarmClient = "https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.3/swarm-client-3.3.jar"
 def jenkinsUrl = "http://localhost:18880"
-def username = "admin"
-def password = "admin"
+def username = ""
+def password = ""
 
 def swarmJar = new File(buildDir, "swarm.jar")
 def swarmRoot = new File(buildDir, "swarm-root")
